@@ -48,6 +48,7 @@
   email: "",
   github: "",
   website: "",
+  last_updated: none,
   left_column_size: left_column_size,
   grid_column_gutter: grid_column_gutter,
   main_color: main_color,
@@ -134,6 +135,12 @@
   set par(justify: true, leading: 0.5em)
 
   body
+
+
+  if last_updated != none {
+    v(1fr)
+    align(center)[_(Last updated: #last_updated)_]
+  }
 }
 
 #let datebox(range: ()) = {

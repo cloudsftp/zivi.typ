@@ -6,6 +6,7 @@
   github: "cloudsftp",
   website: "https://cloudsftp.de",
   email: "fabian.weik@protonmail.com",
+  last_updated: "August 2023",
 )
 
 = Education
@@ -122,7 +123,3 @@
   - Coffee Conossieur
   - If You Are Reading This You Are Awesome
 ]
-
-#v(1fr)
-
-#align(center)[_(Last updated: February 2102)_]
