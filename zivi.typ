@@ -104,35 +104,35 @@
     ],
     align(right + top)[
       // Contact information
-      #set block(below: 0.5em)
+      //#set block(below: 0.5em)
+
+      #let content = ()
 
       #if github != "" {
-        align(top)[
-          #small_colored_logo("icons/github.svg") // TODO: why not colored?
-          #link("https://github.com/" + github)[#github]
-        ]
+        content.push(small_colored_logo("icons/github.svg")) // TODO: why not colored?
+        content.push(link("https://github.com/" + github)[#github])
       }
 
       #if website != "" {
-        align(top)[
-          #small_colored_logo("icons/website.svg")
-          #link(website)[#website]
-        ]
+        content.push(small_colored_logo("icons/website.svg"))
+        content.push(link(website)[#website])
       }
 
       #if phone != "" {
-        align(top)[
-          #small_colored_logo("icons/phone-solid.svg")
-          #link("tel:" + phone)[#phone]
-        ]
+        content.push(small_colored_logo("icons/phone-solid.svg"))
+        content.push(link("tel:" + phone)[#phone])
       }
 
       #if email != "" {
-        align(top)[
-          #small_colored_logo("icons/envelope-regular.svg")
-          #link("mailto:" + email)
-        ]
+        content.push(small_colored_logo("icons/envelope-regular.svg"))
+        content.push(link("mailto:" + email))
       }
+
+      #table(
+        columns: (auto, auto),
+        stroke: none,
+        ..content,
+      )
     ]
   )
 
