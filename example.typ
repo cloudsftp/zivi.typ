@@ -18,7 +18,9 @@
   logo: "uni_stgt.svg",
   place: "Stuttgart, Germany",
 )[
-  #thesis(grade: "1.0")[This is a Great Topic and I worked Hard on my Thesis. But it has a very long title. I hope it fits nicely into the box.]
+  #thesis(grade: "1.0", url: "https://google.com")[
+    This is a Great Topic and I worked Hard on my Thesis. But it has a very long title. I hope it fits nicely into the box.
+  ]
 ]
 
 #cventry(

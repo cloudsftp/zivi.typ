@@ -216,13 +216,21 @@
   [#description #h(3em) #text(style: "italic", certificate)],
 )
 
-#let thesis(title, grade: none) = {
+#let thesis(title, grade: none, url: none) = {
   align(center)[
     #box(
       width: 80%,
       height: 4em,
     )[
-      #align(center + horizon)[#text(style: "italic", title)]
+      #align(center + horizon)[
+        #if url != none {
+          link(url)[
+            #text(style: "italic", title)
+          ]
+        } else {
+          text(style: "italic", title)
+        }
+      ]
       #if grade != none {
         align(right + bottom)[(grade: #text(weight: "semibold")[#grade])]
       }
