@@ -106,32 +106,26 @@
       // Contact information
       #set block(below: 0.5em)
 
+      #let define_row(url, text, icon) = {
+        align(top)[
+          #link(url)[
+            #text #h(.5em)
+            #small_colored_logo("icons/" + icon) // TODO: why not colored?
+          ]
+        ]
+      }
+
       #if github != "" {
-        align(top)[
-          #link("https://github.com/" + github)[#github]
-          #small_colored_logo("icons/github.svg") // TODO: why not colored?
-        ]
+        define_row("https://github.com/" + github, github, "github.svg")
       }
-
       #if website != "" {
-        align(top)[
-          #link(website)[#website]
-          #small_colored_logo("icons/website.svg")
-        ]
+        define_row(website, website, "website.svg")
       }
-
       #if phone != "" {
-        align(top)[
-          #link("tel:" + phone)[#phone]
-          #small_colored_logo("icons/phone-solid.svg")
-        ]
+        define_row("tel:" + phone, phone, "phone-solid.svg")
       }
-
       #if email != "" {
-        align(top)[
-          #link("mailto:" + email)
-          #small_colored_logo("icons/envelope-regular.svg")
-        ]
+        define_row("mailto:" + email, email, "envelope-regular.svg")
       }
     ]
   )
