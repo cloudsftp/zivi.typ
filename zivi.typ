@@ -17,7 +17,7 @@
  *
  */
 
-#let left_column_size = 20%
+#let left_column_size = 25%
 #let grid_column_gutter = 8pt
 
 #let main_color = rgb(0, 90, 120) // Verkehrsblau
@@ -41,7 +41,7 @@
   small_logo_box(image.decode(colored))
 }
 
-#let project(
+#let zivi(
   title: "",
   author: [],
   phone: "",
@@ -59,7 +59,7 @@
 ) = {
   set document(author: author, title: title)
   set page(numbering: none)
-  set text(font: ("Latin Modern Sans", "Inria Sans"), lang: "en", fallback: true)
+  set text(font: ("Open Sans", "Latin Modern Sans", "Inria Sans"), lang: "en", fallback: true)
   show math.equation: set text(weight: 400)
 
   /*
@@ -146,13 +146,15 @@
   }
 }
 
+#let date_height = 1.8em
+
 #let datebox(range: ()) = {
   let year = range.at("year", default: "")
   let month = range.at("month", default: "")
 
   box(
-    width: 3em,
-    height: 1.8em,
+    width: 4em,
+    height: date_height,
     align(center,
       stack(
         dir: ttb,
@@ -182,35 +184,57 @@
 
 #let cvcol(content) = cvgrid([], content)
 
+#let role_entry(role) = box(height: date_height)[
+    #if role != none {
+      text[== #role]
+    }
+  ]
+}
+
+#let institution_entry(institution, logo) = box(height: date_height)[
+    #if logo != none {
+      small_logo("usericons/" + logo)
+    }
+    #if institution != none {
+      text[=== #institution]
+    }
+  ]
+}
+
+#let place_entry(place) = {
+  if place != none {
+    box(height: date_height)[
+      #h(1fr)
+      #small_colored_logo("icons/location.svg")
+      #text[=== #place]
+    ]
+  }
+}
+
+#let description_entry(description) = {
+  v(1em)
+  description
+}
+
 #let cventry(
   start: (),
   end: (),
-  role: "",
-  logo: "",
-  institution: "",
-  place: "",
+  role: none,
+  logo: none,
+  institution: none,
+  place: none,
   description,
 ) = cvgrid(
   align(center, daterange(start: start, end: end)),
   [
-    == #role
+    #role_entry(role)
     #h(1fr)
-    #if logo != "" {
-      small_logo("usericons/" + logo)
-    }
-    === #institution
+    #institution_entry(institution, logo)
   ],
   [],
-  [
-    #h(1fr)
-    #small_colored_logo("icons/location.svg")
-    === #place
-  ],
+  place_entry(place),
   [],
-  [
-    #v(1em)
-    #description
-  ],
+  description_entry(description),
 )
 
 #let cventry_long_role(
@@ -223,31 +247,15 @@
   description,
 ) = cvgrid(
   align(center, daterange(start: start, end: end)),
-  [
-      == #role
-  ],
+  role_entry(role),
   [],
   [
-    #align(right)[
-      #box(height: 1.8em)[
-        #if logo != "" {
-          small_logo("usericons/" + logo)
-        }
-        === #institution
-      ]
-    ]
+    #align(right, institution_entry(institution, logo))
   ],
   [],
-  [
-    #h(1fr)
-    #small_colored_logo("icons/location.svg")
-    === #place
-  ],
+  place_entry(place),
   [],
-  [
-    #v(1em)
-    #description
-  ],
+  description_entry(description),
 )
 
 #let cvlanguage(
@@ -280,3 +288,35 @@
     ]
   ]
 }
+
+#let project(
+  start: (),
+  end: (),
+  name: none,
+  role: none,
+  logo: none,
+  url: none,
+  description,
+) = cvgrid(
+  align(center, daterange(start: start, end: end)),
+  [
+    #if name != none {
+      text[== #name]
+    }
+    #if role != none {
+      text[
+        ---
+        === #role
+      ]
+    }
+    #if url != none {
+      h(1fr)
+      link(url, small_colored_logo("icons/website.svg"))
+    }
+  ],
+  [],
+  [
+    #v(1em)
+    #description
+  ],
+)

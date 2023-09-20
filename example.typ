@@ -1,6 +1,6 @@
 #import "zivi.typ": *
 
-#show: project.with(
+#show: zivi.with(
   author: "Zivi",
   title: "A Typst Template",
   github: "cloudsftp",
@@ -60,11 +60,11 @@
   lorem(40)
 )
 
-#cventry(
+#project(
   start: (month: "March", year: 2098),
   end: (month: "August", year: 2099),
-  role: [Full-bar frobnicator],
-  place: "M.O.O.N. Inc",
+  name: "Project Name",
+  role: "Full-bar frobnicator",
   lorem(40)
 )
 
