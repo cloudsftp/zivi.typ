@@ -5,6 +5,7 @@
   title: "A Typst Template",
   github: "cloudsftp",
   website: "https://cloudsftp.de",
+  birthday: "2000 BC",
   email: "fabian.weik@protonmail.com",
   last_updated: "August 2023",
 )
@@ -24,10 +25,10 @@
   ]
 ]
 
-#cventry(
-  start: (month: "April", year: 2097),
+#cventry_long_role(
+  start: (month: "September", year: 2097),
   end: (month: "October", year: 2100),
-  role: "B.Sc. Computer Science",
+  role: "B.Sc. Computer Science with a title that is entirely too long",
   institution: "University of Stuttgart",
   logo: "uni_stgt.svg",
   place: "Stuttgart, Germany",

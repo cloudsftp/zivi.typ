@@ -48,6 +48,7 @@
   email: "",
   github: "",
   website: "",
+  birthday: "",
   last_updated: none,
   left_column_size: left_column_size,
   grid_column_gutter: grid_column_gutter,
@@ -111,7 +112,7 @@
         align(top)[
           #link(url)[
             #text #h(.5em)
-            #small_colored_logo("icons/" + icon) // TODO: why not colored?
+            #small_logo("icons/" + icon)
           ]
         ]
       }
@@ -128,6 +129,9 @@
       #if email != "" {
         define_row("mailto:" + email, email, "envelope-regular.svg")
       }
+      #if birthday != "" {
+        define_row("birth:" + birthday, birthday, "calendar.svg")
+      }
     ]
   )
 
@@ -135,7 +139,6 @@
   set par(justify: true, leading: 0.5em)
 
   body
-
 
   if last_updated != none {
     v(1fr)
@@ -148,6 +151,8 @@
   let month = range.at("month", default: "")
 
   box(
+    width: 3em,
+    height: 1.8em,
     align(center,
       stack(
         dir: ttb,
@@ -194,6 +199,43 @@
       small_logo("usericons/" + logo)
     }
     === #institution
+  ],
+  [],
+  [
+    #h(1fr)
+    #small_colored_logo("icons/location.svg")
+    === #place
+  ],
+  [],
+  [
+    #v(1em)
+    #description
+  ],
+)
+
+#let cventry_long_role(
+  start: (),
+  end: (),
+  role: "",
+  logo: "",
+  institution: "",
+  place: "",
+  description,
+) = cvgrid(
+  align(center, daterange(start: start, end: end)),
+  [
+      == #role
+  ],
+  [],
+  [
+    #align(right)[
+      #box(height: 1.8em)[
+        #if logo != "" {
+          small_logo("usericons/" + logo)
+        }
+        === #institution
+      ]
+    ]
   ],
   [],
   [
