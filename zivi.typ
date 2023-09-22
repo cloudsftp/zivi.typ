@@ -36,7 +36,7 @@
   let original = read(file)
   let colored = original.replace(
     "#000000",
-    main_color.hex(),
+    main_color.to-hex(),
   )
   small_logo_box(image.decode(colored))
 }
@@ -167,12 +167,16 @@
 }
 
 #let daterange(start: (), end: ()) = box(
-  stack(dir: ltr,
-    spacing: 0.75em,
-    datebox(range: start),
-    [--],
-    datebox(range: end)
-  )
+  if end == () {
+      datebox(range: start)
+  } else {
+    stack(dir: ltr,
+      spacing: 0.75em,
+      datebox(range: start),
+      [--],
+      datebox(range: end)
+    )
+  }
 )
 
 #let cvgrid(..cells) = pad(bottom: 0.8em)[#grid(
@@ -213,7 +217,7 @@
 
 #let description_entry(description) = {
   v(1em)
-  description
+  text[#description]
 }
 
 #let cventry(

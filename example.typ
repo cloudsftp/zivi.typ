@@ -68,6 +68,13 @@
   lorem(40)
 )
 
+#project(
+  start: (month: "March", year: 2098),
+  name: "Small Project",
+  role: "Full-bar frobnicator",
+  lorem(40)
+)
+
 = Languages
 
 #cvlanguage(
