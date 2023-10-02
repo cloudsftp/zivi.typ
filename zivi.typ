@@ -299,7 +299,9 @@
   name: none,
   role: none,
   logo: none,
-  url: none,
+  website: none,
+  playstore: none,
+  github: none,
   description,
 ) = cvgrid(
   align(center, daterange(start: start, end: end)),
@@ -313,9 +315,15 @@
         === #role
       ]
     }
-    #if url != none {
-      h(1fr)
-      link(url, small_colored_logo("icons/website.svg"))
+    #h(1fr)
+    #if website != none {
+      link(website, small_logo("icons/website.svg"))
+    }
+    #if playstore != none {
+      link(playstore, small_logo("icons/playstore.svg"))
+    }
+    #if github != none {
+      link(github, small_logo("icons/github.svg"))
     }
   ],
   [],
